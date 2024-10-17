@@ -3,7 +3,7 @@ Version:	58390
 Release:	2
 Summary:	Generate sentences from economic articles
 Group:		Publishing
-URL:		http://www.ctan.org/tex-archive/macros/latex/contrib/econlipsum
+URL:		https://www.ctan.org/tex-archive/macros/latex/contrib/econlipsum
 License:	lppl1.3c
 Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/econlipsum.r%{version}.tar.xz
 Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/econlipsum.doc.r%{version}.tar.xz
