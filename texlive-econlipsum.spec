@@ -1,41 +1,25 @@
-Name:		texlive-econlipsum
-Version:	58390
-Release:	2
+%global tl_name econlipsum
+%global tl_revision 77682
+
+Name:		texlive-%{tl_name}
+Epoch:		1
+Version:	0.8.2
+Release:	%{tl_revision}.1
 Summary:	Generate sentences from economic articles
 Group:		Publishing
 URL:		https://www.ctan.org/tex-archive/macros/latex/contrib/econlipsum
 License:	lppl1.3c
-Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/econlipsum.r%{version}.tar.xz
-Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/econlipsum.doc.r%{version}.tar.xz
-Source2:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/econlipsum.source.r%{version}.tar.xz
+Source0:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/econlipsum.r%{tl_revision}.tar.xz
+Source1:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/econlipsum.doc.r%{tl_revision}.tar.xz
+Source2:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/econlipsum.source.r%{tl_revision}.tar.xz
 BuildArch:	noarch
+BuildSystem:	texlive
 BuildRequires:	texlive-tlpkg
-Requires(pre):	texlive-tlpkg
-Requires(post):	texlive-kpathsea
+%texlive_base_requires
+Provides:	texlive(%{tl_name}) = %{tl_revision}
 
 %description
-This package is a blind text generator that ouputs sentences
-inferred from abstracts of economic articles. All the
-paragraphs are taken with permission from
-https://ipsum.mwt.me/.
+This package is a blind text generator that outputs sentences inferred
+from abstracts of economic articles. All the paragraphs are taken with
+permission from https://ipsum.mwt.me/.
 
-%prep
-%setup -c -a1 -a2
-%autopatch -p1
-
-%build
-
-%install
-rm -rf tlpkg
-mkdir -p %{buildroot}%{_texmfdistdir}
-cp -a * %{buildroot}%{_texmfdistdir}
-
-%files
-%doc %{_texmfdistdir}/source/latex/econlipsum
-%{_texmfdistdir}/tex/latex/econlipsum
-%doc %{_texmfdistdir}/doc/latex/econlipsum
-
-%post -p %{_sbindir}/texlive.post
-
-%postun
-[ "$1" -eq 0 ] && %{_sbindir}/texlive.post
